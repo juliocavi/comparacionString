@@ -11,6 +11,9 @@ public class FechaYHora
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;
+    private DisplayDosCaracteres dia;
+    private DisplayDosCaracteres mes;
+    private DisplayDosCaracteres ano;
     /**
      * Constructor for objects of class FechaYHora
      */
@@ -19,5 +22,8 @@ public class FechaYHora
         // initialise instance variables
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
+        dia = new DisplayDosCaracteres(31);
+        mes = new DisplayDosCaracteres(13);
+        ano = new DisplayDosCaracteres(3000);
     }
 }
