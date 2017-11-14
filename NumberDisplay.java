@@ -12,7 +12,9 @@
  */
 public class NumberDisplay
 {
+    //valor limite
     private int limit;
+    //valor actual
     private int value;
 
     /**
@@ -22,13 +24,18 @@ public class NumberDisplay
     public NumberDisplay(int rollOverLimit)
     {
         limit = rollOverLimit;
-        value = 0;
+        if (limit == 31 || limit == 13 || limit==100){
+            value = 1;
+        }
+        else{
+            value = 0;
+        }
     }
 
     /**
      * Return the current value.
      */
-    public int getValue()
+    public int getValorActual()
     {
         return value;
     }
@@ -38,7 +45,7 @@ public class NumberDisplay
      * String. If the value is less than ten, it will be padded with a leading
      * zero).
      */
-    public String getDisplayValue()
+    public String getValue()
     {
         if(value < 10) {
             return "0" + value;
@@ -54,8 +61,15 @@ public class NumberDisplay
      */
     public void setValue(int replacementValue)
     {
-        if((replacementValue >= 0) && (replacementValue < limit)) {
-            value = replacementValue;
+        if (limit == 13 || limit == 31 || limit == 100){
+            if((replacementValue >= 1) && (replacementValue < limit)){
+                value = replacementValue;
+            }
+        }
+        else{
+            if((replacementValue >= 0) && (replacementValue < limit)){
+                value = replacementValue;
+            }
         }
     }
 
@@ -63,8 +77,15 @@ public class NumberDisplay
      * Increment the display value by one, rolling over to zero if the
      * limit is reached.
      */
-    public void increment()
-    {
-        value = (value + 1) % limit;
+    public void increment(){
+        if (limit == 31 || limit == 13 || limit == 100){
+            value = value + 1;
+            if (value == limit){
+            value = 1;
+            }
+        }
+        else{
+            value = (value + 1) % limit;
+        }
     }
 }

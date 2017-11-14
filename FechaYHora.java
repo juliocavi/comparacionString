@@ -7,23 +7,62 @@
  */
 public class FechaYHora
 {
-    // instance variables - replace the example below with your own
     private NumberDisplay hours;
-    private NumberDisplay minutes;
+    private NumberDisplay minutes; 
+    private NumberDisplay dia;
+    private NumberDisplay mes;
+    private NumberDisplay año;
     private String displayString;
-    private DisplayDosCaracteres dia;
-    private DisplayDosCaracteres mes;
-    private DisplayDosCaracteres ano;
+    
     /**
-     * Constructor for objects of class FechaYHora
+     * Constructor for objects of class FechaYHora.
      */
-    public FechaYHora()
+    
+    public FechaYHora(){
+       hours = new NumberDisplay(24);
+       minutes = new NumberDisplay(60);
+       dia = new NumberDisplay(31);
+       mes = new NumberDisplay(13); 
+       año = new NumberDisplay(100); 
+    }
+    
+    /**
+     * Return the complete String (day, month, year, hour and minutes).
+     */
+    
+    public String getFechaYHora(){
+       return  dia.getValue() + "-" + mes.getValue() + "-" + año.getValue() 
+       + " " + hours.getValue() + ":" + minutes.getValue();
+    }
+    
+    /**
+     * Set the date and the hour with values inserted by parameters.
+     */
+    public void fijarFechaYHora(int day, int month, int year, int hora, int minutos)
     {
-        // initialise instance variables
-        hours = new NumberDisplay(24);
-        minutes = new NumberDisplay(60);
-        dia = new DisplayDosCaracteres(31);
-        mes = new DisplayDosCaracteres(13);
-        ano = new DisplayDosCaracteres(3000);
+       dia.setValue(day);
+       mes.setValue(month);
+       año.setValue(year);
+       hours.setValue(hora);
+       minutes.setValue(minutos);
+    }
+    
+    /**
+     * Increment one day, month, year, hour and minute respectively.
+     */
+    public void avanzar(){
+       minutes.increment();
+       if (minutes.getValorActual() == 0){
+           hours.increment();
+           if (hours.getValorActual() == 0){
+               dia.increment();
+               if (dia.getValorActual() == 1){
+                   mes.increment();
+                   if (mes.getValorActual() == 1){
+                       año.increment();
+                   }
+               }
+           }
+       }
     }
 }
