@@ -24,6 +24,7 @@ public class FechaYHora
        dia = new NumberDisplay(31);
        mes = new NumberDisplay(13); 
        año = new NumberDisplay(100); 
+       getFechaYHora();
     }
     
     /**
